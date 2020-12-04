@@ -6,6 +6,7 @@ import com.qwerty.soapapitest.codebase.models.body.request.TasksByElementsQuery
 import com.qwerty.soapapitest.codebase.models.body.response.TasksByElementsResponse
 import com.qwerty.soapapitest.codebase.models.envelopes.GeneralRequestEnvelope
 import com.qwerty.soapapitest.codebase.models.envelopes.GeneralResponseEnvelope
+import com.tickaroo.tikxml.retrofit.TikXmlConverterFactory
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Deferred
 import kotlinx.coroutines.Dispatchers
@@ -50,7 +51,10 @@ val soapService: Api by lazy {
     }.addInterceptor(AuthenticationInterceptor("_JAVAPOS_0","Welcome1"))
     Builder().baseUrl("https://my348665.sapbydesign.com/sap/bc/srt/scs/sap/")
         .addCallAdapterFactory(CoroutineCallAdapterFactory())
-        .addConverterFactory(SimpleXmlConverterFactory.create(Persister(AnnotationStrategy())))
+        .addConverterFactory(
+            /*SimpleXmlConverterFactory.create(Persister(AnnotationStrategy()))*/
+            TikXmlConverterFactory.create()
+        )
         .client(BaseClient).build().create(Api::class.java)
 }
 

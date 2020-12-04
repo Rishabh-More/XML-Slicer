@@ -1,10 +1,15 @@
 package com.qwerty.soapapitest.codebase.models.elements
 
-import org.simpleframework.xml.Root
-import org.simpleframework.xml.Element
-import org.simpleframework.xml.Attribute
+import com.tickaroo.tikxml.annotation.Attribute
+import com.tickaroo.tikxml.annotation.Element
+import com.tickaroo.tikxml.annotation.Xml
 
-@Root(name = "SiteLogisticsTask")
+//import org.simpleframework.xml.Root
+//import org.simpleframework.xml.Element
+//import org.simpleframework.xml.Attribute
+
+//@Root(name = "SiteLogisticsTask")
+@Xml(name = "SiteLogisticsTask")
 class SiteLogisticsTask {
     @Element(name = "SiteLogisticsTaskID")
     var taskID: Int? = null
@@ -13,7 +18,7 @@ class SiteLogisticsTask {
     var taskUniqueID: String? = null
 
     @Element(name = "OperationTypeCode")
-    @Attribute(name = "listAgencyID", required = false)
+    //@Attribute(name = "listAgencyID")
     var operationTypeCode: Int? = null
 
     @Element(name = "BusinessTransactionDocumentReferenceID")

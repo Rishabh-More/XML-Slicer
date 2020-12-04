@@ -1,9 +1,13 @@
 package com.qwerty.soapapitest.codebase.models.elements
 
-import org.simpleframework.xml.Element
-import org.simpleframework.xml.Root
+import com.tickaroo.tikxml.annotation.Element
+import com.tickaroo.tikxml.annotation.Xml
 
-@Root(name = "SiteLogisticsLotOperationActivity")
+//import org.simpleframework.xml.Element
+//import org.simpleframework.xml.Root
+
+//@Root(name = "SiteLogisticsLotOperationActivity")
+@Xml(name = "SiteLogisticsLotOperationActivity")
 class LotOperationActivity {
     @Element(name = "SiteLogisticsLotOperationActivityUUID")
     var lotOperationActivityUniqueID: String? = null

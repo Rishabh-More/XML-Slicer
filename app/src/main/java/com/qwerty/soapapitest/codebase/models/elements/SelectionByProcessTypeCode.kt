@@ -1,9 +1,13 @@
 package com.qwerty.soapapitest.codebase.models.elements
 
-import org.simpleframework.xml.Root
-import org.simpleframework.xml.Element
+import com.tickaroo.tikxml.annotation.Element
+import com.tickaroo.tikxml.annotation.Xml
 
-@Root(name = "SelectionByProcessTypeCode")
+//import org.simpleframework.xml.Root
+//import org.simpleframework.xml.Element
+
+//@Root(name = "SelectionByProcessTypeCode")
+@Xml(name = "SelectionByProcessTypeCode")
 class SelectionByProcessTypeCode {
     @Element(name = "InclusionExclusionCode")
     var incExclusionCode: String? = null

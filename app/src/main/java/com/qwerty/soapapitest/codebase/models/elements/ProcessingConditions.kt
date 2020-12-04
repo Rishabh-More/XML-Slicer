@@ -1,9 +1,13 @@
 package com.qwerty.soapapitest.codebase.models.elements
 
-import org.simpleframework.xml.Element
-import org.simpleframework.xml.Root
+import com.tickaroo.tikxml.annotation.Element
+import com.tickaroo.tikxml.annotation.Xml
 
-@Root(name = "ProcessingConditions")
+//import org.simpleframework.xml.Element
+//import org.simpleframework.xml.Root
+
+//@Root(name = "ProcessingConditions")
+@Xml(name = "ProcessingConditions")
 class ProcessingConditions {
     @Element(name = "QueryHitsMaximumNumberValue")
     var maxQueryHits: Int? = null
