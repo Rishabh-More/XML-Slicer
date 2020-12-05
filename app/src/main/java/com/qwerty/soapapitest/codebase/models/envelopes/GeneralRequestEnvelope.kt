@@ -22,9 +22,9 @@ import org.simpleframework.xml.NamespaceList*/
     ]
 )
 class GeneralRequestEnvelope {
-    @Element(name = "Header")
+    @Element(name = "soap:Header")
     var header: String? = null
 
-    @Element(name = "Body")
+    @Element(name = "soap:Body")
     var body: TasksByElementsQuery? = null
 }

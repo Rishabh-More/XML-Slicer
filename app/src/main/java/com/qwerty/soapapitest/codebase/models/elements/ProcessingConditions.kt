@@ -1,6 +1,6 @@
 package com.qwerty.soapapitest.codebase.models.elements
 
-import com.tickaroo.tikxml.annotation.Element
+import com.tickaroo.tikxml.annotation.PropertyElement
 import com.tickaroo.tikxml.annotation.Xml
 
 //import org.simpleframework.xml.Element
@@ -9,18 +9,18 @@ import com.tickaroo.tikxml.annotation.Xml
 //@Root(name = "ProcessingConditions")
 @Xml(name = "ProcessingConditions")
 class ProcessingConditions {
-    @Element(name = "QueryHitsMaximumNumberValue")
+    @PropertyElement(name = "QueryHitsMaximumNumberValue")
     var maxQueryHits: Int? = null
 
-    @Element(name = "QueryHitsUnlimitedIndicator")
+    @PropertyElement(name = "QueryHitsUnlimitedIndicator")
     var unlimitedQueryHitsIndicator: Boolean? = null
 
-    @Element(name = "ReturnedQueryHitsNumberValue")
+    @PropertyElement(name = "ReturnedQueryHitsNumberValue")
     var returnedQueryHits: Int? = null
 
-    @Element(name = "MoreHitsAvailableIndicator")
+    @PropertyElement(name = "MoreHitsAvailableIndicator")
     var moreQueryHitsAvailable: Boolean? = null
 
-    @Element(name = "LastReturnedObjectID")
+    @PropertyElement(name = "LastReturnedObjectID")
     var lastReturnedObjectID: String? = null
 }

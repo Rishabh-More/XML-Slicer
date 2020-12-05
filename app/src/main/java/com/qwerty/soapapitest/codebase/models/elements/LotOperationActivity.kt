@@ -1,6 +1,7 @@
 package com.qwerty.soapapitest.codebase.models.elements
 
 import com.tickaroo.tikxml.annotation.Element
+import com.tickaroo.tikxml.annotation.PropertyElement
 import com.tickaroo.tikxml.annotation.Xml
 
 //import org.simpleframework.xml.Element
@@ -9,7 +10,7 @@ import com.tickaroo.tikxml.annotation.Xml
 //@Root(name = "SiteLogisticsLotOperationActivity")
 @Xml(name = "SiteLogisticsLotOperationActivity")
 class LotOperationActivity {
-    @Element(name = "SiteLogisticsLotOperationActivityUUID")
+    @PropertyElement(name = "SiteLogisticsLotOperationActivityUUID")
     var lotOperationActivityUniqueID: String? = null
 
     @Element(name = "MaterialInput")

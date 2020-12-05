@@ -1,6 +1,7 @@
 package com.qwerty.soapapitest.codebase.models.elements
 
 import com.tickaroo.tikxml.annotation.Element
+import com.tickaroo.tikxml.annotation.PropertyElement
 import com.tickaroo.tikxml.annotation.Xml
 
 //import org.simpleframework.xml.Element
@@ -9,12 +10,12 @@ import com.tickaroo.tikxml.annotation.Xml
 //@Root(name = "SelectionByResponsibleEmployeeID")
 @Xml(name = "SelectionByResponsibleEmployeeID")
 class SelectionByResponsibleEmployeeID {
-    @Element(name = "InclusionExclusionCode")
+    @PropertyElement(name = "InclusionExclusionCode")
     var incExclusionCode: String? = null
 
-    @Element(name = "IntervalBoundaryTypeCode")
+    @PropertyElement(name = "IntervalBoundaryTypeCode")
     var intervalBoundaryTypeCode: Int? = null
 
-    @Element(name = "LowerBoundaryResponsibleEmployeeID")
+    @PropertyElement(name = "LowerBoundaryResponsibleEmployeeID")
     var lowerBoundaryEmployeeID: String? = null
 }
