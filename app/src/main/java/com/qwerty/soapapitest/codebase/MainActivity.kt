@@ -25,6 +25,7 @@ class MainActivity : BaseActivity() {
         Timber.tag("MAIN_ACTIVITY")
 
         binding.mainActionButton.setOnClickListener {
+            Timber.e("Button Clicked")
             lifecycleScope.launch(Dispatchers.IO){
                 val selectionByProcessTypeCode = SelectionByProcessTypeCode()
                 selectionByProcessTypeCode.incExclusionCode = "I"
