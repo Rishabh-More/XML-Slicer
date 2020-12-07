@@ -12,6 +12,6 @@ interface Api {
     @Headers("Content-Type: text/xml; charset=utf-8")
     @POST("querysitelogisticstaskin")
     fun callSampleSoapApiAsync(
-            @Body data: GeneralRequestEnvelope
-    ) : Deferred<GeneralResponseEnvelope>
+            @Body data: String?
+    ) : Deferred<String>
 }

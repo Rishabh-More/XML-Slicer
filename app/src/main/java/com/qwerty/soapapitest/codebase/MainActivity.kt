@@ -68,7 +68,7 @@ class MainActivity : BaseActivity() {
                 data.data?.taskSelectionByElements?.responsibleEmployeeIDs = responsibleEmployees
                 callTestSoapApi(){
                     try {
-                        Timber.e("data from response: ${it.body?.data?.tasks}")
+                        Timber.e("data from response: $it")
                     } catch (e: Exception){
                         e.printStackTrace()
                     }

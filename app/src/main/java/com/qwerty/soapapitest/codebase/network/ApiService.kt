@@ -20,6 +20,7 @@ import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit.Builder
 import retrofit2.converter.moshi.MoshiConverterFactory
+import retrofit2.converter.scalars.ScalarsConverterFactory
 import timber.log.Timber
 
 const val NO_INTERNET_CONNECTION = "Please check your internet connection and try again"
@@ -69,59 +70,63 @@ object RetrofitClient {
         Timber.e("soapClient: Interceptors ${soapClient.interceptors}")
         Builder().baseUrl("https://my348665.sapbydesign.com/sap/bc/srt/scs/sap/")
                 .addCallAdapterFactory(CoroutineCallAdapterFactory())
-                .addConverterFactory(
-                        /*SimpleXmlConverterFactory.create(Persister(AnnotationStrategy()))*/
+                .addConverterFactory(ScalarsConverterFactory.create())
+                /*.addConverterFactory(
+                        *//*SimpleXmlConverterFactory.create(Persister(AnnotationStrategy()))*//*
                         TikXmlConverterFactory.create()
-                )
+                )*/
                 .client(soapClient).build().create(Api::class.java)
     }
 }
 
-suspend fun callTestSoapApi(onDone: (response: GeneralResponseEnvelope) -> Unit){
+suspend fun callTestSoapApi(onDone: (response: String) -> Unit){
     /*val request = GeneralRequestEnvelope()
     request.body = data*/
-    val selectionByProcessTypeCode = SelectionByProcessTypeCode()
-    selectionByProcessTypeCode.incExclusionCode = "I"
-    selectionByProcessTypeCode.intervalBoundaryTypeCode = 1
-    selectionByProcessTypeCode.lowerBoundaryTypeCode = 1
-    val employee1 = SelectionByResponsibleEmployeeID()
-    employee1.incExclusionCode = "I"
-    employee1.intervalBoundaryTypeCode = 1
-    employee1.lowerBoundaryEmployeeID = "E0005"
-    val responsibleEmployees = ArrayList<SelectionByResponsibleEmployeeID>()
-    responsibleEmployees.add(employee1)
-    val processingStatusCode1 = SelectionByProcessingStatusCode()
-    processingStatusCode1.incExclusionCode = "I"
-    processingStatusCode1.intervalBoundaryTypeCode = 1
-    processingStatusCode1.lowerBoundaryProcessingStatusCode = 1
-    val processingStatusCodes = ArrayList<SelectionByProcessingStatusCode>()
-    processingStatusCodes.add(processingStatusCode1)
-    val processingConditions = ProcessingConditions()
-    processingConditions.maxQueryHits = 2
-    processingConditions.unlimitedQueryHitsIndicator = false
-    val data = TasksByElementsQuery()
-    data.data?.processingConditions = processingConditions
-    data.data?.taskSelectionByElements?.processTypeCode = selectionByProcessTypeCode
-    data.data?.taskSelectionByElements?.processingStatusCode = processingStatusCodes
-    data.data?.taskSelectionByElements?.responsibleEmployeeIDs = responsibleEmployees
-    val request = GeneralRequestEnvelope()
-    request.body = data
+    val requestBody = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n" +
+            "<soap:Envelope xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:glob=\"http://sap.com/xi/SAPGlobal20/Global\">\r\n" +
+            "   <soap:Header/>\r\n" +
+            "   <soap:Body>\r\n" +
+            "      <glob:SiteLogisticsTaskByElementsQuery_sync>\r\n" +
+            "        <SiteLogisticsTaskSelectionByElements>\r\n" +
+            "         <SelectionByProcessTypeCode>\r\n" +
+            "            <InclusionExclusionCode>I</InclusionExclusionCode>\r\n" +
+            "            <IntervalBoundaryTypeCode>1</IntervalBoundaryTypeCode>\r\n" +
+            "            <LowerBoundaryProcessTypeCode>1</LowerBoundaryProcessTypeCode>\r\n" +
+            "         </SelectionByProcessTypeCode>\r\n\t\t" +
+            " <SelectionByResponsibleEmployeeID>\r\n" +
+            "            <InclusionExclusionCode>I</InclusionExclusionCode>\r\n" +
+            "            <IntervalBoundaryTypeCode>1</IntervalBoundaryTypeCode>\r\n" +
+            "            <LowerBoundaryResponsibleEmployeeID>E0005</LowerBoundaryResponsibleEmployeeID>\r\n" +
+            "         </SelectionByResponsibleEmployeeID>\r\n\t\t" +
+            " <SelectionByProcessingStatusCode>\r\n\t\t" +
+            "    <InclusionExclusionCode>I</InclusionExclusionCode>\r\n\t\t\t" +
+            "<IntervalBoundaryTypeCode>1</IntervalBoundaryTypeCode>\r\n" +
+            "            <LowerBoundarySiteLogisticsProcessingStatusCode>1</LowerBoundarySiteLogisticsProcessingStatusCode>\r\n" +
+            "         </SelectionByProcessingStatusCode>\r\n\t\t" +
+            "</SiteLogisticsTaskSelectionByElements>\r\n" +
+            "        <ProcessingConditions>\r\n" +
+            "            <QueryHitsMaximumNumberValue>2</QueryHitsMaximumNumberValue>\r\n" +
+            "            <QueryHitsUnlimitedIndicator>false</QueryHitsUnlimitedIndicator>\r\n" +
+            "        </ProcessingConditions>\r\n" +
+            "      </glob:SiteLogisticsTaskByElementsQuery_sync>\r\n" +
+            "   </soap:Body>\r\n" +
+            "</soap:Envelope>"
     response(onDone){
-        soapService.callSampleSoapApiAsync(request)
+        soapService.callSampleSoapApiAsync(requestBody)
     }
 }
 
 suspend fun response(
-        onDone: (response: GeneralResponseEnvelope) -> Unit,
-        responseExec: () -> Deferred<GeneralResponseEnvelope>
+        onDone: (response: String) -> Unit,
+        responseExec: () -> Deferred<String>
 ){
     CoroutineScope(Dispatchers.IO).launch {
         val resp = try {
             responseExec().await()
         } catch (e: Exception) {
             Timber.e("Exception in Response: ${e.printStackTrace()}")
-            GeneralResponseEnvelope()
+            //GeneralResponseEnvelope()
         }
-        onDone(resp)
+        onDone(resp as String)
     }
 }
