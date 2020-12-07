@@ -2,8 +2,8 @@ package com.qwerty.soapapitest.codebase.models.envelopes
 
 import com.qwerty.soapapitest.codebase.models.body.request.TasksByElementsQuery
 import com.tickaroo.tikxml.annotation.Element
-import com.tickaroo.tikxml.annotation.Path
 import com.tickaroo.tikxml.annotation.Xml
+
 /*import org.simpleframework.xml.Element
 import org.simpleframework.xml.Root
 import org.simpleframework.xml.Namespace

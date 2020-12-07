@@ -3,6 +3,10 @@ package com.qwerty.soapapitest.codebase.network
 import com.jakewharton.retrofit2.adapter.kotlin.coroutines.CoroutineCallAdapterFactory
 import com.qwerty.soapapitest.BuildConfig
 import com.qwerty.soapapitest.codebase.models.body.request.TasksByElementsQuery
+import com.qwerty.soapapitest.codebase.models.elements.ProcessingConditions
+import com.qwerty.soapapitest.codebase.models.elements.SelectionByProcessTypeCode
+import com.qwerty.soapapitest.codebase.models.elements.SelectionByProcessingStatusCode
+import com.qwerty.soapapitest.codebase.models.elements.SelectionByResponsibleEmployeeID
 import com.qwerty.soapapitest.codebase.models.envelopes.GeneralRequestEnvelope
 import com.qwerty.soapapitest.codebase.models.envelopes.GeneralResponseEnvelope
 import com.qwerty.soapapitest.codebase.network.RetrofitClient.soapService
@@ -38,6 +42,7 @@ object RetrofitClient {
     }
 
     val soapService: Api by lazy {
+        
         //TODO Manage to find a way to pass url dynamically
         // on every Middleware Api response
         val soapClient = BaseClient.newBuilder().addInterceptor { chain ->
@@ -72,7 +77,33 @@ object RetrofitClient {
     }
 }
 
-suspend fun callTestSoapApi(data: TasksByElementsQuery, onDone: (response: GeneralResponseEnvelope) -> Unit){
+suspend fun callTestSoapApi(onDone: (response: GeneralResponseEnvelope) -> Unit){
+    /*val request = GeneralRequestEnvelope()
+    request.body = data*/
+    val selectionByProcessTypeCode = SelectionByProcessTypeCode()
+    selectionByProcessTypeCode.incExclusionCode = "I"
+    selectionByProcessTypeCode.intervalBoundaryTypeCode = 1
+    selectionByProcessTypeCode.lowerBoundaryTypeCode = 1
+    val employee1 = SelectionByResponsibleEmployeeID()
+    employee1.incExclusionCode = "I"
+    employee1.intervalBoundaryTypeCode = 1
+    employee1.lowerBoundaryEmployeeID = "E0005"
+    val responsibleEmployees = ArrayList<SelectionByResponsibleEmployeeID>()
+    responsibleEmployees.add(employee1)
+    val processingStatusCode1 = SelectionByProcessingStatusCode()
+    processingStatusCode1.incExclusionCode = "I"
+    processingStatusCode1.intervalBoundaryTypeCode = 1
+    processingStatusCode1.lowerBoundaryProcessingStatusCode = 1
+    val processingStatusCodes = ArrayList<SelectionByProcessingStatusCode>()
+    processingStatusCodes.add(processingStatusCode1)
+    val processingConditions = ProcessingConditions()
+    processingConditions.maxQueryHits = 2
+    processingConditions.unlimitedQueryHitsIndicator = false
+    val data = TasksByElementsQuery()
+    data.data?.processingConditions = processingConditions
+    data.data?.taskSelectionByElements?.processTypeCode = selectionByProcessTypeCode
+    data.data?.taskSelectionByElements?.processingStatusCode = processingStatusCodes
+    data.data?.taskSelectionByElements?.responsibleEmployeeIDs = responsibleEmployees
     val request = GeneralRequestEnvelope()
     request.body = data
     response(onDone){

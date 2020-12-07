@@ -66,7 +66,7 @@ class MainActivity : BaseActivity() {
                 data.data?.taskSelectionByElements?.processTypeCode = selectionByProcessTypeCode
                 data.data?.taskSelectionByElements?.processingStatusCode = processingStatusCodes
                 data.data?.taskSelectionByElements?.responsibleEmployeeIDs = responsibleEmployees
-                callTestSoapApi(data){
+                callTestSoapApi(){
                     try {
                         Timber.e("data from response: ${it.body?.data?.tasks}")
                     } catch (e: Exception){
