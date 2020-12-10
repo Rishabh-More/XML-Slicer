@@ -9,7 +9,7 @@ import kotlin.reflect.KClass
 
 /*@Root(name = "soap:Body")*/
 @Xml(name = "soap:Body")
-data class TasksByElementsQuery (
+class TasksByElementsQuery {
     @Element(name = "glob:SiteLogisticsTaskByElementsQuery_sync")
     var data: TasksByElementsQueryData? = null
-)
+}

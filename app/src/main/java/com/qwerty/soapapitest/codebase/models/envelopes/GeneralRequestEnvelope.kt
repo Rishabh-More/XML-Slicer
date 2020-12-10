@@ -15,16 +15,16 @@ import org.simpleframework.xml.NamespaceList*/
     Namespace(reference = "http://sap.com/xi/SAPGlobal20/Global", prefix = "glob")
 )*/
 @Xml(
-    name = "soap:Envelope",
-    writeNamespaces = [
-        "soap=http://schemas.xmlsoap.org/soap/envelope/",
-        "glob=http://sap.com/xi/SAPGlobal20/Global"
-    ]
+        name = "soap:Envelope",
+        writeNamespaces = [
+            "soap=http://schemas.xmlsoap.org/soap/envelope/",
+            "glob=http://sap.com/xi/SAPGlobal20/Global"
+        ]
 )
 class GeneralRequestEnvelope {
     @Element(name = "soap:Header")
     var header: String? = null
 
     @Element(name = "soap:Body")
-    var body: TasksByElementsQuery? = null
+    var body: TasksByElementsQuery? = null /**Must ALWAYS be a class but can be any XML defined class**/
 }

@@ -1,8 +1,6 @@
 package com.qwerty.soapapitest.codebase.models.elements
 
-import com.tickaroo.tikxml.annotation.Attribute
-import com.tickaroo.tikxml.annotation.Element
-import com.tickaroo.tikxml.annotation.Xml
+import com.tickaroo.tikxml.annotation.*
 
 //import org.simpleframework.xml.Root
 //import org.simpleframework.xml.Element
@@ -11,17 +9,16 @@ import com.tickaroo.tikxml.annotation.Xml
 //@Root(name = "SiteLogisticsTask")
 @Xml(name = "SiteLogisticsTask")
 class SiteLogisticsTask {
-    @Element(name = "SiteLogisticsTaskID")
+    @PropertyElement(name = "SiteLogisticsTaskID")
     var taskID: Int? = null
 
-    @Element(name = "SiteLogisticsTaskUUID")
+    @PropertyElement(name = "SiteLogisticsTaskUUID")
     var taskUniqueID: String? = null
 
-    @Element(name = "OperationTypeCode")
-    //@Attribute(name = "listAgencyID")
-    var operationTypeCode: Int? = null
+    @PropertyElement(name = "OperationTypeCode")
+    var operationTypeCode: OperationTypeCode? = null
 
-    @Element(name = "BusinessTransactionDocumentReferenceID")
+    @PropertyElement(name = "BusinessTransactionDocumentReferenceID")
     var transactionDocumentRefID: Int? = null
 
     @Element(name = "SiteLogisticsTaskReferencedObject")
@@ -30,9 +27,9 @@ class SiteLogisticsTask {
     @Element(name = "CustomerParty")
     var customerDetails: CustomerParty? = null
 
-    @Element(name = "EarliestExecutionStartDate")
+    @PropertyElement(name = "EarliestExecutionStartDate")
     var earliestStartDate: String? = null
 
-    @Element(name = "LatestExecutionEndDate")
+    @PropertyElement(name = "LatestExecutionEndDate")
     var latestEndDate: String? = null
 }

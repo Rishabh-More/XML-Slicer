@@ -15,9 +15,9 @@ import com.tickaroo.tikxml.annotation.Xml
     writeNamespaces = ["soap-env=http://schemas.xmlsoap.org/soap/envelope/"]
 )
 class GeneralResponseEnvelope {
-    @Element(name = "Header")
+    @Element(name = "soap-env:Header")
     var header: String? = null
 
-    @Element(name = "Body")
+    @Element(name = "soap-env:Body")
     var body: TasksByElementsResponse? = null
 }

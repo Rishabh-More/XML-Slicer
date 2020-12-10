@@ -1,8 +1,6 @@
 package com.qwerty.soapapitest.codebase.models.elements
 
-import com.tickaroo.tikxml.annotation.Attribute
-import com.tickaroo.tikxml.annotation.Element
-import com.tickaroo.tikxml.annotation.Xml
+import com.tickaroo.tikxml.annotation.*
 
 //import org.simpleframework.xml.Root
 //import org.simpleframework.xml.Element
@@ -11,30 +9,27 @@ import com.tickaroo.tikxml.annotation.Xml
 //@Root(name = "MaterialInput")
 @Xml(name = "MaterialInput")
 class MaterialInput {
-    @Element(name = "iteLogisticsLotMaterialInputUUID")
+    @PropertyElement(name = "SiteLogisticsLotMaterialInputUUID")
     var materialInputUniqueID: String? = null
 
-    @Element(name = "ProductID")
+    @PropertyElement(name = "ProductID")
     var productID: String? = null
 
-    @Element(name = "ProductDescription")
+    @PropertyElement(name = "ProductDescription")
     var productDescription: String? = null
 
     @Element(name = "PlanQuantity")
-    //@Attribute(name = "unitCode")
-    var planQuantity: Double? = null
+    var planQuantity: PlanQuantity? = null
 
     @Element(name = "OpenQuantity")
-    //@Attribute(name = "unitCode")
-    var openQuantity: Double? = null
+    var openQuantity: OpenQuantity? = null
 
     @Element(name = "TotalConfirmedQuantity")
-    //@Attribute(name = "unitCode")
-    var totalConfirmedQuantity: Double? = null
+    var totalConfirmedQuantity: TotalConfirmedQuantity? = null
 
-    @Element(name = "LineItemID")
+    @PropertyElement(name = "LineItemID")
     var lineItemID: Int? = null
 
-    @Element(name = "MaterialDeviationStatusCode")
+    @PropertyElement(name = "MaterialDeviationStatusCode")
     var deviationStatusCode: Int? = null
 }
