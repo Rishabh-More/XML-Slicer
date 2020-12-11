@@ -5,7 +5,7 @@ import org.simpleframework.xml.Element
 import com.qwerty.soapapitest.codebase.models.data.TasksByElementsQueryData
 
 @Root(name = "soap:Body")
-class TasksByElementsQuery {
+data class TasksByElementsQuery @JvmOverloads constructor (
     @field:Element(name = "glob:SiteLogisticsTaskByElementsQuery_sync", required = false)
     var data: TasksByElementsQueryData? = null
-}
+)

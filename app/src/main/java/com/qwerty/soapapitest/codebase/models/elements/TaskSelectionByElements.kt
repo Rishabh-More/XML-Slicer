@@ -5,13 +5,13 @@ import org.simpleframework.xml.Element
 import org.simpleframework.xml.ElementList
 
 @Root(name = "SiteLogisticsTaskSelectionByElements")
-class TaskSelectionByElements {
-    @Element(name = "SelectionByProcessTypeCode")
-    var processTypeCode: SelectionByProcessTypeCode? = null
+data class TaskSelectionByElements @JvmOverloads constructor (
+    @field:Element(name = "SelectionByProcessTypeCode", required = false)
+    var processTypeCode: SelectionByProcessTypeCode? = null,
 
-    @ElementList(name = "SelectionByResponsibleEmployeeID")
-    var responsibleEmployeeIDs: List<SelectionByResponsibleEmployeeID>? = null
+    @field:ElementList(name = "SelectionByResponsibleEmployeeID", inline = true)
+    var responsibleEmployeeIDs: List<SelectionByResponsibleEmployeeID>? = null,
 
-    @ElementList(name = "SelectionByProcessingStatusCode")
+    @field:ElementList(name = "SelectionByProcessingStatusCode", inline = true)
     var processingStatusCode: List<SelectionByProcessingStatusCode>? = null
-}
+)

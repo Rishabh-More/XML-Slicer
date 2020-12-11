@@ -7,10 +7,10 @@ import org.simpleframework.xml.Namespace
 
 @Root(name = "soap-env:Envelope")
 @Namespace(reference = "http://schemas.xmlsoap.org/soap/envelope/", prefix = "soap-env")
-class GeneralResponseEnvelope {
-    @Element(name = "Header", required = false)
-    var header: String? = null
+data class GeneralResponseEnvelope @JvmOverloads constructor (
+    @field:Element(name = "soap-env:Header", required = false)
+    var header: String? = null,
 
-    @Element(name = "Body", required = false)
+    @field:Element(name = "soap-env:Body", required = false)
     var body: TasksByElementsResponse? = null
-}
+)

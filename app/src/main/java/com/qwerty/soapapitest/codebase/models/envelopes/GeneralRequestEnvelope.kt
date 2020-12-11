@@ -11,10 +11,10 @@ import org.simpleframework.xml.NamespaceList
     Namespace(reference = "http://schemas.xmlsoap.org/soap/envelope/", prefix = "soap"),
     Namespace(reference = "http://sap.com/xi/SAPGlobal20/Global", prefix = "glob")
 )
-class GeneralRequestEnvelope {
-    @field:Element(name = "Header")
-    var header: String? = null
+data class GeneralRequestEnvelope @JvmOverloads constructor (
+    @field:Element(name = "soap:Header", required = false)
+    var header: String? = null,
 
-    @field:Element(name = "Body")
+    @field:Element(name = "soap:Body", required = false)
     var body: TasksByElementsQuery? = null
-}
+)

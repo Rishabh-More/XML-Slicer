@@ -5,34 +5,34 @@ import org.simpleframework.xml.Element
 import org.simpleframework.xml.Attribute
 
 @Root(name = "MaterialOutput")
-class MaterialOutput {
-    @Element(name = "SiteLogisticsLotMaterialOutputUUID")
-    var lotMaterialOutputUniqueID: String? = null
+data class MaterialOutput @JvmOverloads constructor (
+    @field:Element(name = "SiteLogisticsLotMaterialOutputUUID", required = false)
+    var lotMaterialOutputUniqueID: String? = null,
 
-    @Element(name = "TargetLogisticsAreaID")
-    var targetAreaID: String? = null
+    @field:Element(name = "TargetLogisticsAreaID", required = false)
+    var targetAreaID: String? = null,
 
-    @Element(name = "ProductID")
-    var productID: String? = null
+    @field:Element(name = "ProductID", required = false)
+    var productID: String? = null,
 
-    @Element(name = "ProductDescription")
-    var productDescription: String? = null
+    @field:Element(name = "ProductDescription", required = false)
+    var productDescription: String? = null,
 
-    @Element(name = "PlanQuantity")
-    @Attribute(name = "unitCode", required = false)
-    var planQuantity: Double? = null
+    @field:Element(name = "PlanQuantity", required = false)
+    @field:Attribute(name = "unitCode", required = false)
+    var planQuantity: Double? = null,
 
-    @Element(name = "OpenQuantity")
-    @Attribute(name = "unitCode", required = false)
-    var openQuantity: Double? = null
+    @field:Element(name = "OpenQuantity", required = false)
+    @field:Attribute(name = "unitCode", required = false)
+    var openQuantity: Double? = null,
 
-    @Element(name = "TotalConfirmedQuantity")
-    @Attribute(name = "unitCode", required = false)
-    var totalConfirmedQuantity: Double? = null
+    @field:Element(name = "TotalConfirmedQuantity", required = false)
+    @field:Attribute(name = "unitCode", required = false)
+    var totalConfirmedQuantity: Double? = null,
 
-    @Element(name = "LineItemID")
-    var lineItemID: Int? = null
+    @field:Element(name = "LineItemID", required = false)
+    var lineItemID: Int? = null,
 
-    @Element(name = "MaterialDeviationStatusCode")
+    @field:Element(name = "MaterialDeviationStatusCode", required = false)
     var deviationStatusCode: Int? = null
-}
+)

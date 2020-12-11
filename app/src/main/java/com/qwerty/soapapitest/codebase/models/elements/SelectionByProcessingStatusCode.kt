@@ -4,13 +4,13 @@ import org.simpleframework.xml.Element
 import org.simpleframework.xml.Root
 
 @Root(name = "SelectionByProcessingStatusCode")
-class SelectionByProcessingStatusCode {
-    @Element(name = "InclusionExclusionCode")
-    var incExclusionCode: String? = null
+data class SelectionByProcessingStatusCode @JvmOverloads constructor (
+    @field:Element(name = "InclusionExclusionCode", required = false)
+    var incExclusionCode: String? = null,
 
-    @Element(name = "IntervalBoundaryTypeCode")
-    var intervalBoundaryTypeCode: Int? = null
+    @field:Element(name = "IntervalBoundaryTypeCode", required = false)
+    var intervalBoundaryTypeCode: Int? = null,
 
-    @Element(name = "LowerBoundarySiteLogisticsProcessingStatusCode")
+    @field:Element(name = "LowerBoundarySiteLogisticsProcessingStatusCode", required = false)
     var lowerBoundaryProcessingStatusCode: Int? = null
-}
+)

@@ -4,11 +4,10 @@ import org.simpleframework.xml.Element
 import org.simpleframework.xml.Root
 
 @Root(name = "SiteLogisticsTaskReferencedObject")
-class TaskReferencedObject {
-    @Element(name = "ReferencedObjectUUID")
-    var objectUnqiueID: String? = null
+data class TaskReferencedObject @JvmOverloads constructor (
+    @field:Element(name = "ReferencedObjectUUID", required = false)
+    var objectUnqiueID: String? = null,
 
-    @Element(name = "SiteLogisticsLotOperationActivity")
+    @field:Element(name = "SiteLogisticsLotOperationActivity", required = false)
     var lotOperationActivity: LotOperationActivity? = null
-
-}
+)

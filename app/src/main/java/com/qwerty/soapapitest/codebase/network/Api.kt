@@ -8,8 +8,10 @@ import retrofit2.http.POST
 import kotlinx.coroutines.Deferred
 import com.qwerty.soapapitest.codebase.models.envelopes.GeneralRequestEnvelope
 import com.qwerty.soapapitest.codebase.models.envelopes.GeneralResponseEnvelope
+import retrofit2.http.Headers
 
 interface Api {
+    @Headers("Content-Type: text/xml; charset=utf-8")
     @POST("querysitelogisticstaskin")
     fun callSampleSoapApiAsync(
             @Body data: GeneralRequestEnvelope

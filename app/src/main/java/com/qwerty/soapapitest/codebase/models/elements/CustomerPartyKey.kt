@@ -4,7 +4,7 @@ import org.simpleframework.xml.Element
 import org.simpleframework.xml.Root
 
 @Root(name = "CustomerPartyKey")
-class CustomerPartyKey {
-    @Element(name = "PartyID")
+data class CustomerPartyKey @JvmOverloads constructor (
+    @field:Element(name = "PartyID", required = false)
     var partyID: Int? = null
-}
+)

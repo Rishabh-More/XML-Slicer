@@ -5,29 +5,29 @@ import org.simpleframework.xml.Element
 import org.simpleframework.xml.Attribute
 
 @Root(name = "SiteLogisticsTask")
-class SiteLogisticsTask {
-    @Element(name = "SiteLogisticsTaskID")
-    var taskID: Int? = null
+data class SiteLogisticsTask @JvmOverloads constructor (
+    @field:Element(name = "SiteLogisticsTaskID", required = false)
+    var taskID: Int? = null,
 
-    @Element(name = "SiteLogisticsTaskUUID")
-    var taskUniqueID: String? = null
+    @field:Element(name = "SiteLogisticsTaskUUID", required = false)
+    var taskUniqueID: String? = null,
 
-    @Element(name = "OperationTypeCode")
-    @Attribute(name = "listAgencyID", required = false)
-    var operationTypeCode: Int? = null
+    @field:Element(name = "OperationTypeCode", required = false)
+    @field:Attribute(name = "listAgencyID")
+    var operationTypeCode: Int? = null,
 
-    @Element(name = "BusinessTransactionDocumentReferenceID")
-    var transactionDocumentRefID: Int? = null
+    @field:Element(name = "BusinessTransactionDocumentReferenceID", required = false)
+    var transactionDocumentRefID: Int? = null,
 
-    @Element(name = "SiteLogisticsTaskReferencedObject")
-    var taskData: TaskReferencedObject? = null
+    @field:Element(name = "SiteLogisticsTaskReferencedObject", required = false)
+    var taskData: TaskReferencedObject? = null,
 
-    @Element(name = "CustomerParty")
-    var customerDetails: CustomerParty? = null
+    @field:Element(name = "CustomerParty", required = false)
+    var customerDetails: CustomerParty? = null,
 
-    @Element(name = "EarliestExecutionStartDate")
-    var earliestStartDate: String? = null
+    @field:Element(name = "EarliestExecutionStartDate", required = false)
+    var earliestStartDate: String? = null,
 
-    @Element(name = "LatestExecutionEndDate")
+    @field:Element(name = "LatestExecutionEndDate", required = false)
     var latestEndDate: String? = null
-}
+)

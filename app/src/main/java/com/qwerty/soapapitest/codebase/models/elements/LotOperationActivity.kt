@@ -4,13 +4,13 @@ import org.simpleframework.xml.Element
 import org.simpleframework.xml.Root
 
 @Root(name = "SiteLogisticsLotOperationActivity")
-class LotOperationActivity {
-    @Element(name = "SiteLogisticsLotOperationActivityUUID")
-    var lotOperationActivityUniqueID: String? = null
+data class LotOperationActivity (
+    @field:Element(name = "SiteLogisticsLotOperationActivityUUID", required = false)
+    var lotOperationActivityUniqueID: String? = null,
 
-    @Element(name = "MaterialInput")
-    var materialInput: MaterialInput? = null
+    @field:Element(name = "MaterialInput", required = false)
+    var materialInput: MaterialInput? = null,
 
-    @Element(name = "MaterialOutput")
+    @field:Element(name = "MaterialOutput", required = false)
     var materialOutput: MaterialOutput? = null
-}
+)

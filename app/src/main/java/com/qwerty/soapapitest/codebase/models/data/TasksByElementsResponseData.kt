@@ -9,10 +9,11 @@ import com.qwerty.soapapitest.codebase.models.elements.ProcessingConditions
     Namespace(reference = "http://sap.com/xi/SAPGlobal20/Global", prefix = "n0"),
     Namespace(reference = "urn:sap.com:proxy:KY1:/1SAI/TASCB109484409CA11A7C74:804", prefix = "prx")
 )
-class TasksByElementsResponseData {
-    @ElementList(name = "SiteLogisticsTask")
-    var tasks: List<SiteLogisticsTask>? = null
+@Order(elements = ["SiteLogisticsTask","ProcessingConditions"])
+data class TasksByElementsResponseData @JvmOverloads constructor (
+    @field:ElementList(name = "SiteLogisticsTask", required = false)
+    var tasks: List<SiteLogisticsTask>? = null,
 
-    @Element(name = "ProcessingConditions")
+    @field:Element(name = "ProcessingConditions", required = false)
     var processingConditions: ProcessingConditions? = null
-}
+)
