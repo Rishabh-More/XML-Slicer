@@ -7,12 +7,15 @@ import com.qwerty.soapapitest.codebase.models.middleware.Login
 import com.qwerty.soapapitest.codebase.models.soapservice.body.request.TasksByElementsQuery
 import com.qwerty.soapapitest.codebase.models.soapservice.data.TasksByElementsQueryData
 import com.qwerty.soapapitest.codebase.models.soapservice.elements.*
+import com.qwerty.soapapitest.codebase.models.soapservice.envelopes.GeneralResponseEnvelope
 import com.qwerty.soapapitest.codebase.network.callDemoLogin
 import com.qwerty.soapapitest.codebase.network.callTestSoapApi
 import com.qwerty.soapapitest.databinding.ActivityMainBinding
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import org.koin.android.ext.android.get
+import org.simpleframework.xml.Serializer
+import org.simpleframework.xml.core.Persister
 import timber.log.Timber
 
 class MainActivity : BaseActivity() {
@@ -37,7 +40,63 @@ class MainActivity : BaseActivity() {
         }
 
         binding.mainActionButton.setOnClickListener {
-            lifecycleScope.launch(Dispatchers.Main){
+
+            val serializer: Serializer = Persister()
+            val response = serializer.read(GeneralResponseEnvelope::class.java,"<soap-env:Envelope xmlns:soap-env=\"http://schemas.xmlsoap.org/soap/envelope/\">\n" +
+                    "    <soap-env:Header/>\n" +
+                    "    <soap-env:Body>\n" +
+                    "        <n0:SiteLogistcsTaskByElementsResponse_sync xmlns:n0=\"http://sap.com/xi/SAPGlobal20/Global\" xmlns:prx=\"urn:sap.com:proxy:KY1:/1SAI/TASCB109484409CA11A7C74:804\">\n" +
+                    "            <SiteLogisticsTask>\n" +
+                    "                <SiteLogisticsTaskID>187</SiteLogisticsTaskID>\n" +
+                    "                <SiteLogisticsTaskUUID>00163e03-0680-1ee2-87a3-9016e158eae2</SiteLogisticsTaskUUID>\n" +
+                    "                <OperationTypeCode listAgencyID=\" \">13</OperationTypeCode>\n" +
+                    "                <BusinessTransactionDocumentReferenceID>319</BusinessTransactionDocumentReferenceID>\n" +
+                    "                <SiteLogisticsTaskReferencedObject>\n" +
+                    "                    <ReferencedObjectUUID>00163e03-0680-1ee2-87a3-9016e1590ae2</ReferencedObjectUUID>\n" +
+                    "                    <SiteLogisticsLotOperationActivity>\n" +
+                    "                        <SiteLogisticsLotOperationActivityUUID>00163e03-0680-1ee2-87a3-8ff4ec74cae2</SiteLogisticsLotOperationActivityUUID>\n" +
+                    "                        <MaterialInput>\n" +
+                    "                            <SiteLogisticsLotMaterialInputUUID>00163e03-0680-1ee2-87a3-8ff4ec750ae2</SiteLogisticsLotMaterialInputUUID>\n" +
+                    "                            <ProductID>P110310</ProductID>\n" +
+                    "                            <ProductDescription>Brown Coal Briquette, 1 palette</ProductDescription>\n" +
+                    "                            <PlanQuantity unitCode=\"XPX\">21.0</PlanQuantity>\n" +
+                    "                            <OpenQuantity unitCode=\"XPX\">0.0</OpenQuantity>\n" +
+                    "                            <TotalConfirmedQuantity unitCode=\"XPX\">21.0</TotalConfirmedQuantity>\n" +
+                    "                            <LineItemID>1</LineItemID>\n" +
+                    "                            <MaterialDeviationStatusCode>1</MaterialDeviationStatusCode>\n" +
+                    "                        </MaterialInput>\n" +
+                    "                        <MaterialOutput>\n" +
+                    "                            <SiteLogisticsLotMaterialOutputUUID>00163e03-0680-1ee2-87a3-8ff4ec752ae2</SiteLogisticsLotMaterialOutputUUID>\n" +
+                    "                            <TargetLogisticsAreaID>P1100-10</TargetLogisticsAreaID>\n" +
+                    "                            <ProductID>P110310</ProductID>\n" +
+                    "                            <ProductDescription>Brown Coal Briquette, 1 palette</ProductDescription>\n" +
+                    "                            <PlanQuantity unitCode=\"XPX\">21.0</PlanQuantity>\n" +
+                    "                            <OpenQuantity unitCode=\"XPX\">0.0</OpenQuantity>\n" +
+                    "                            <TotalConfirmedQuantity unitCode=\"XPX\">21.0</TotalConfirmedQuantity>\n" +
+                    "                            <MaterialDeviationStatusCode>1</MaterialDeviationStatusCode>\n" +
+                    "                            <LineItemID>1</LineItemID>\n" +
+                    "                        </MaterialOutput>\n" +
+                    "                    </SiteLogisticsLotOperationActivity>\n" +
+                    "                </SiteLogisticsTaskReferencedObject>\n" +
+                    "                <CustomerParty>\n" +
+                    "                    <CustomerPartyKey>\n" +
+                    "                        <PartyID>1000</PartyID>\n" +
+                    "                    </CustomerPartyKey>\n" +
+                    "                </CustomerParty>\n" +
+                    "                <EarliestExecutionStartDate>2012-10-23T14:18:23Z</EarliestExecutionStartDate>\n" +
+                    "                <LatestExecutionEndDate>2012-10-23T14:33:00Z</LatestExecutionEndDate>\n" +
+                    "            </SiteLogisticsTask>\n" +
+                    "            <ProcessingConditions>\n" +
+                    "                <ReturnedQueryHitsNumberValue>1</ReturnedQueryHitsNumberValue>\n" +
+                    "                <MoreHitsAvailableIndicator>true</MoreHitsAvailableIndicator>\n" +
+                    "                <LastReturnedObjectID>00163E0306801EE287A39016E158EAE2</LastReturnedObjectID>\n" +
+                    "            </ProcessingConditions>\n" +
+                    "        </n0:SiteLogistcsTaskByElementsResponse_sync>\n" +
+                    "    </soap-env:Body>\n" +
+                    "</soap-env:Envelope>")
+            Timber.e("Deserialized Xml: $response")
+
+            /*lifecycleScope.launch(Dispatchers.Main){
                 val selectionByProcessTypeCode = get<SelectionByProcessTypeCode>()
                 selectionByProcessTypeCode.incExclusionCode = "I"
                 selectionByProcessTypeCode.intervalBoundaryTypeCode = 1
@@ -91,7 +150,7 @@ class MainActivity : BaseActivity() {
                         e.printStackTrace()
                     }
                 }
-            }
+            }*/
         }
     }
 }
