@@ -1,4 +1,4 @@
-package com.qwerty.soapapitest.codebase.models.elements
+package com.qwerty.soapapitest.codebase.models.soapservice.elements
 
 import org.simpleframework.xml.Root
 import org.simpleframework.xml.Element

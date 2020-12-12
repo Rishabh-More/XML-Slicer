@@ -3,9 +3,11 @@ package com.qwerty.soapapitest.codebase
 import android.os.Bundle
 import androidx.lifecycle.lifecycleScope
 import com.qwerty.soapapitest.base.BaseActivity
-import com.qwerty.soapapitest.codebase.models.body.request.TasksByElementsQuery
-import com.qwerty.soapapitest.codebase.models.data.TasksByElementsQueryData
-import com.qwerty.soapapitest.codebase.models.elements.*
+import com.qwerty.soapapitest.codebase.models.middleware.Login
+import com.qwerty.soapapitest.codebase.models.soapservice.body.request.TasksByElementsQuery
+import com.qwerty.soapapitest.codebase.models.soapservice.data.TasksByElementsQueryData
+import com.qwerty.soapapitest.codebase.models.soapservice.elements.*
+import com.qwerty.soapapitest.codebase.network.callDemoLogin
 import com.qwerty.soapapitest.codebase.network.callTestSoapApi
 import com.qwerty.soapapitest.databinding.ActivityMainBinding
 import kotlinx.coroutines.Dispatchers
@@ -23,8 +25,19 @@ class MainActivity : BaseActivity() {
         setContentView(binding.root)
         Timber.tag("MAIN_ACTIVITY")
 
+        binding.mainLoginButton.setOnClickListener {
+            lifecycleScope.launch(Dispatchers.Main){
+                val  login = get<Login>()
+                login.email = "EXT1002"
+                login.password = "Percipere@2019"
+                login.deviceId = "12345"
+                login.tenantId = "999"
+                callDemoLogin(login)
+            }
+        }
+
         binding.mainActionButton.setOnClickListener {
-            lifecycleScope.launch(Dispatchers.IO){
+            lifecycleScope.launch(Dispatchers.Main){
                 val selectionByProcessTypeCode = get<SelectionByProcessTypeCode>()
                 selectionByProcessTypeCode.incExclusionCode = "I"
                 selectionByProcessTypeCode.intervalBoundaryTypeCode = 1

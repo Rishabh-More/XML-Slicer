@@ -1,9 +1,9 @@
-package com.qwerty.soapapitest.codebase.models.data
+package com.qwerty.soapapitest.codebase.models.soapservice.data
 
 import org.simpleframework.xml.Root
 import org.simpleframework.xml.Element
-import com.qwerty.soapapitest.codebase.models.elements.ProcessingConditions
-import com.qwerty.soapapitest.codebase.models.elements.TaskSelectionByElements
+import com.qwerty.soapapitest.codebase.models.soapservice.elements.ProcessingConditions
+import com.qwerty.soapapitest.codebase.models.soapservice.elements.TaskSelectionByElements
 import org.simpleframework.xml.Order
 
 @Root(name = "glob:SiteLogisticsTaskByElementsQuery_sync")

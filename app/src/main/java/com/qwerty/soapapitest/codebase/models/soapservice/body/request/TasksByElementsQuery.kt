@@ -1,8 +1,8 @@
-package com.qwerty.soapapitest.codebase.models.body.request
+package com.qwerty.soapapitest.codebase.models.soapservice.body.request
 
 import org.simpleframework.xml.Root
 import org.simpleframework.xml.Element
-import com.qwerty.soapapitest.codebase.models.data.TasksByElementsQueryData
+import com.qwerty.soapapitest.codebase.models.soapservice.data.TasksByElementsQueryData
 
 @Root(name = "soap:Body")
 data class TasksByElementsQuery @JvmOverloads constructor (

@@ -2,6 +2,7 @@ package com.qwerty.soapapitest.base
 
 import android.app.Application
 import com.qwerty.soapapitest.BuildConfig
+import com.qwerty.soapapitest.codebase.dependencies.restClassModule
 import com.qwerty.soapapitest.codebase.dependencies.soapClassModule
 import org.koin.android.ext.koin.androidContext
 import org.koin.core.context.startKoin
@@ -14,7 +15,7 @@ class BaseApp : Application() {
         super.onCreate()
         startKoin {
             androidContext(this@BaseApp)
-            modules(listOf(soapClassModule))
+            modules(listOf(restClassModule, soapClassModule))
         }
 
         //Plant a timber Tree

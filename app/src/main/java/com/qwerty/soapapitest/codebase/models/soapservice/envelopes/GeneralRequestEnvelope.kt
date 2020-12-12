@@ -1,6 +1,6 @@
-package com.qwerty.soapapitest.codebase.models.envelopes
+package com.qwerty.soapapitest.codebase.models.soapservice.envelopes
 
-import com.qwerty.soapapitest.codebase.models.body.request.TasksByElementsQuery
+import com.qwerty.soapapitest.codebase.models.soapservice.body.request.TasksByElementsQuery
 import org.simpleframework.xml.Element
 import org.simpleframework.xml.Root
 import org.simpleframework.xml.Namespace

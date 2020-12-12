@@ -10,11 +10,13 @@
         android:id="@+id/main_test_label"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
         android:text="Test Soap Api"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/main_login_button" />
 
     <Button
         android:id="@+id/main_action_button"
@@ -25,5 +27,28 @@
         app:layout_constraintEnd_toEndOf="@+id/main_test_label"
         app:layout_constraintStart_toStartOf="@+id/main_test_label"
         app:layout_constraintTop_toBottomOf="@+id/main_test_label" />
+
+    <TextView
+        android:id="@+id/main_test_label_login"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:text="Test Device Login"
+        app:layout_constraintBottom_toTopOf="@+id/main_login_button"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_chainStyle="packed" />
+
+    <Button
+        android:id="@+id/main_login_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Call Rest Login"
+        app:layout_constraintBottom_toTopOf="@+id/main_test_label"
+        app:layout_constraintEnd_toEndOf="@+id/main_test_label_login"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="@+id/main_test_label_login"
+        app:layout_constraintTop_toBottomOf="@+id/main_test_label_login" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

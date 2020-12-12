@@ -1,8 +1,8 @@
-package com.qwerty.soapapitest.codebase.models.data
+package com.qwerty.soapapitest.codebase.models.soapservice.data
 
 import org.simpleframework.xml.*
-import com.qwerty.soapapitest.codebase.models.elements.SiteLogisticsTask
-import com.qwerty.soapapitest.codebase.models.elements.ProcessingConditions
+import com.qwerty.soapapitest.codebase.models.soapservice.elements.SiteLogisticsTask
+import com.qwerty.soapapitest.codebase.models.soapservice.elements.ProcessingConditions
 
 @Root(name = "n0:SiteLogistcsTaskByElementsResponse_sync")
 @NamespaceList(
